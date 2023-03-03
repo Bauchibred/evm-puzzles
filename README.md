@@ -43,6 +43,13 @@ Here we have the `CALLVALUE` and `CODESIZE` opcodes, from previous levels we kno
 
 ### Level 5
 
+Here the `JUMPI` opcode is introduced and this opcode can be used to implement functionalities like loops and conditions.
+
+NB: when the `JUMPI` opcode is executed it pops 2 values from the stack, the first being the PC value with the valid JUMPDEST instruction, and the second value is a bool flag (0 or 1) where if 1 we jump if otherwise we don't jump.
+
+So to solve this level all we need to pass is a value whose square is equal to 0100 (the 2 bytes value that's been passed in the stack by the `PUSH2` opcode) you might think why square? well after passing in the value using the `CALLVALUE` opcode, the `DUP1` opcode gets executed and this opocode just duplicates the first value in the stack and push it on top of the stack, then the `MUL` opcode is executed which just multiplies the top two values in the stack, then the `PUSH2` is called that passes the 0100 and then the `EQ` opcode which just pops 2 values from the stack, and returns 1 to the stack if the 2 values are equal otherwise 0, since the last opcode before the `JUMP` is to `PUSH` a 1 byte input into the stack (0c), which is where the main aim of the level is, to make sure our `EQ` returns true.
+
+Last hint: 0100 is in hex :)
 
 ### For loops improvement:
 * **Caching the length in for loops**
