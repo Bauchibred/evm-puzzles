@@ -1,6 +1,6 @@
 # EVM-PUZZLES
 
-EVM Puzzles is a project developed by [Franco Victorio[(https://github.com/fvictorio/evm-puzzles), each puzzle includes sending a successful transaction to a contract. The bytecode of the contract is always provided, and we just need to fill the transaction data that won't revert the execution, below I'm just going to try as much as possible to give subtle hints on how to solve each level.
+EVM Puzzles is a project developed by [Franco Victorio](https://github.com/fvictorio/evm-puzzles), each puzzle includes sending a successful transaction to a contract. The bytecode of the contract is always provided, and we just need to fill the transaction data that won't revert the execution, below I'm just going to try as much as possible to give subtle hints on how to solve each level.
 
 # How to play 
 ```
