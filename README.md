@@ -58,3 +58,30 @@ We're introduced to the `CALLDATALOAD` opcode in this level and what this opcode
 
 ### Level 7
 
+This level is a bit more complex as we are introduced to a few more opcodes, below is a brief info on the new opcodes  
+- `CALLDATACOPY` takes in 3 values as inputs and then copies the calldata value from the tx data to the memory, NB the first input is `destOffset` and thois just indicates the byte offset in memory where the copy operation's result will be copied to.
+The second input is the `offset` and this just represents the byte offset in the calldata from which we want to start to copy from
+Lastly we have the 3rd input `size` which just indicates the byte size of the data from calldata we intend to copy in memory
+- `CREATE` this opcode deploys a new contract. It also pops 3 values from the stack to use as input of the deployment operation. The result of the `CREATE` operation is an address of the deployed contract that's been pushed to the stack.
+First input: `value` this is just the value in wei to send to the new account
+Second input `offset` the byte offset from where we want to start copy the new contract's code from the memory
+Third input: `size` the byte size of instruction to copy starting from the memory offset
+- `EXTCODESIZE` pops a value from the stack to be used as a 20-byte address. This address will then be used to "query" the destination contract and the result returned is the byte size of the contract's code. The result is then pushed back to the stack.
+
+So in order to solve this level we neeed to pass in a calldata whose extcodesize returns 1 when checked on the deployed code, remember that when the `CREATE` opcode gets executed the runtime code is only the code that gets returned, the other part of the code is just the constructor logic, so all we have to do is make sure that we return 1 byte from the `CREATE` operation.
+Last hint remember that the `RETURN` opcode pops 2 values from the stack, where the first one is the memory offset from where to start to read and the second one is memory size in bytes to read and return.
+Our goal is to execute RETURN(0,1), where 0 is the offset and 1 is size, don't forget LIFO.
+
+
+
+
+lvl.1 - 8
+lvl.2 - 4
+lvl.3 - 0x98989898
+lvl.4 - 6
+lvl.5 - 16
+lvl.6 - 0x000000000000000000000000000000000000000000000000000000000000000A
+lvl.7 -  0x600160015360016000f3
+
+
+
